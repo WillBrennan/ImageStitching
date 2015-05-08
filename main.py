@@ -12,6 +12,7 @@ import cv2
 import numpy
 # Custom Modules
 import scripts
+import combine
 
 logger = logging.getLogger('main')
 
@@ -51,7 +52,7 @@ def main(args):
                             dst_pts = numpy.array([keypoints1[good_match.trainIdx].pt for good_match in positive], dtype=numpy.float32)
                             dst_pts = dst_pts.reshape((-1, 1, 2))
                             M, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
-                            result = scripts.warpImages(frame, result, M)
+                            result = combine.combine_images(frame, result, M)
                             if args.display and not args.quiet:
                                 scripts.display('result', result)
                                 if cv2.waitKey(25) & 0xFF == ord('q'):
@@ -67,7 +68,7 @@ def main(args):
             cam.release()
             cv2.destroyAllWindows()
             if args.save:
-                scripts.saveImage(path, result)
+                scripts.save_image(path, result)
         except Exception as error:
             logger.warning('Failed to process {0}'.format(path))
             logger.debug('Error msg: {0}'.format(error))
