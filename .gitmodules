@@ -1,0 +1,3 @@
+[submodule "BlurDetection"]
+	path = BlurDetection
+	url = https://github.com/WillBrennan/BlurDetection.git
