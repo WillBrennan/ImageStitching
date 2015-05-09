@@ -49,7 +49,6 @@ def get_args(default=None, args_string=''):
     parser.add_argument('-k', '--knn', dest='knn', default=2, type=int, help="Knn cluster value")
     parser.add_argument('-l', '--lowe', dest='lowe', default=0.7, type=float, help='defining distance between points')
     parser.add_argument('-m', '--min', dest='min_correspondence', default=10, type=int, help='number of features that need to match')
-
     if args_string:
         args_string = args_string.split(' ')
         args = parser.parse_args(args_string)
