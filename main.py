@@ -32,6 +32,8 @@ def main(args):
             while True:
                 logger.debug('reading frame {0}'.format(count))
                 ret, frame = cam.read()
+                logger.debug('cropping frame to minimise distortions')
+                #todo: Crop frame!
                 if ret:
                     logger.debug('frame read correctly')
                     count += 1
