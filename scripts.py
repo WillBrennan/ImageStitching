@@ -58,7 +58,7 @@ def get_args(default=None, args_string=''):
     return args
 
 
-def display(title, img, max_size=200000):
+def display(title, img, max_size=500000):
     assert isinstance(img, numpy.ndarray), 'img must be a numpy array'
     assert isinstance(title, str), 'title must be a string'
     scale = numpy.sqrt(min(1.0, float(max_size)/(img.shape[0]*img.shape[1])))
