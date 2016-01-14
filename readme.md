@@ -18,7 +18,7 @@ python main.py <path to video file> --display --save
 ```
 
 ## Demonstration
-![Demo on Video](https://raw.githubusercontent.com/WillBrennan/VideoStitcher/master/demo.png "Demonstration")
+![Demo on Video](https://raw.githubusercontent.com/WillBrennan/ImageStitching/master/examples/display.png "Demonstration")
 
 ## References
 [Automatic Panoramic Image Stitching using Invariant Features](https://www.cs.bath.ac.uk/brown/papers/ijcv2007.pdf)
