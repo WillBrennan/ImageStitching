@@ -15,7 +15,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('image_paths', type=str, nargs='+', help="paths to one or more images or image directories")
     parser.add_argument('-b', '--debug', dest='debug', action='store_true', help='enable debug logging')
-    parser.add_argument('-q', '--quite', dest='quite', action='store_true', help='disable all logging')
+    parser.add_argument('-q', '--quiet', dest='quiet', action='store_true', help='disable all logging')
     parser.add_argument('-d', '--display', dest='display', action='store_true', help="display result")
     parser.add_argument('-s', '--save', dest='save', action='store_true', help="save result to file")
     parser.add_argument("--save_path", dest='save_path', default="stitched.png", type=str, help="path to save result")
@@ -44,15 +44,26 @@ if __name__ == '__main__':
 
     flann = cv2.FlannBasedMatcher({'algorithm': 0, 'trees': 5}, {'checks': 50})
 
-    for image_path in args.image_paths:
+    image_paths = args.image_paths
+    image_index = -1
+    for image_path in image_paths:
         if not os.path.exists(image_path):
             logging.error('{0} is not a valid path'.format(image_path))
             continue
+        if os.path.isdir(image_path):
+            extensions = [".jpeg", ".jpg", ".png"]
+            for file_path in os.listdir(image_path):
+                if os.path.splitext(file_path)[1].lower() in extensions:
+                    image_paths.append(os.path.join(image_path, file_path))
+            continue
 
+        logging.info("reading image from {0}".format(image_path))
         image_colour = cv2.imread(image_path)
         image_gray = cv2.cvtColor(image_colour, cv2.COLOR_RGB2GRAY)
 
-        if not result_gry or not result:
+        image_index += 1
+
+        if image_index == 0:
             result = image_colour
             result_gry = image_gray
             continue
@@ -67,6 +78,7 @@ if __name__ == '__main__':
             logger.error("error! too few correspondences")
             continue
 
+        logger.debug("computing homography between accumulated and new images")
         H, mask = cv2.findHomography(matches_src, matches_dst, cv2.RANSAC, 5.0)
         result = image_stitching.combine_images(image_colour, result, H)
 
@@ -79,7 +91,8 @@ if __name__ == '__main__':
 
     logger.info("processing complete!")
 
-    cv2.destroyAllWindows()
+    if args.display and not args.quiet:
+        cv2.destroyAllWindows()
     if args.save:
         logger.info("saving stitched image to {0}".format(args.save_path))
         image_stitching.helpers.save_image(args.save_path, result)

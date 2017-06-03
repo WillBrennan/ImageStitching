@@ -14,9 +14,11 @@ def compute_matches(features0, features1, matcher, knn=5, lowe=0.7):
     keypoints0, descriptors0 = features0
     keypoints1, descriptors1 = features1
 
+    logger.debug('finding correspondence')
+
     matches = matcher.knnMatch(descriptors0, descriptors1, k=knn)
 
-    logger.debug('finding correspondence')
+    logger.debug("filtering matches with lowe test")
 
     positive = []
     for match0, match1 in matches:
@@ -28,4 +30,4 @@ def compute_matches(features0, features1, matcher, knn=5, lowe=0.7):
     dst_pts = numpy.array([keypoints1[good_match.trainIdx].pt for good_match in positive], dtype=numpy.float32)
     dst_pts = dst_pts.reshape((-1, 1, 2))
 
-    return src_pts, dst_pts
+    return src_pts, dst_pts, len(positive)

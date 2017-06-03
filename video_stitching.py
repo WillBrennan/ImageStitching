@@ -14,7 +14,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('image_paths', type=str, nargs='+', help="paths to one or more images or image directories")
     parser.add_argument('-b', '--debug', dest='debug', action='store_true', help='enable debug logging')
-    parser.add_argument('-q', '--quite', dest='quite', action='store_true', help='disable all logging')
+    parser.add_argument('-q', '--quiet', dest='quiet', action='store_true', help='disable all logging')
     parser.add_argument('-d', '--display', dest='display', action='store_true', help="display result")
     parser.add_argument('-s', '--save', dest='save', action='store_true', help="save result to file")
     parser.add_argument("--save_path", dest='save_path', default="stitched.png", type=str, help="path to save result")
