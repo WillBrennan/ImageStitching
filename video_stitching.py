@@ -12,7 +12,7 @@ import image_stitching
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('image_paths', type=str, nargs='+', help="paths to one or more images or image directories")
+    parser.add_argument('video_path', type=str, help="paths to one or more images or image directories")
     parser.add_argument('-b', '--debug', dest='debug', action='store_true', help='enable debug logging')
     parser.add_argument('-q', '--quiet', dest='quiet', action='store_true', help='disable all logging')
     parser.add_argument('-d', '--display', dest='display', action='store_true', help="display result")
@@ -38,7 +38,7 @@ if __name__ == '__main__':
     else:
         raise RuntimeError("error! unknown version of python!")
 
-    result = None
+    result = []
     result_gry = None
 
     flann = cv2.FlannBasedMatcher({'algorithm': 0, 'trees': 5}, {'checks': 50})
@@ -52,7 +52,7 @@ if __name__ == '__main__':
         if not ret:
             break
 
-        if not result:
+        if len(result)==0:
             result = frame
         else:
             features0 = sift.detectAndCompute(result_gry, None)
