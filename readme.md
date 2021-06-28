@@ -5,20 +5,21 @@ take into account image blurring, evaluating whether an incoming frame has a bet
 lens undistortion.
 
 ## Quick Start
-Getting the app to run is pretty easy, just follow the script below! This script will not
-[install OpenCV](http://docs.opencv.org/doc/tutorials/introduction/linux_install/linux_install.html) or
-[Numpy](http://docs.scipy.org/doc/numpy/user/install.html)
+Getting the app running is pretty simple; install the requirements, 
+
+```bash
+pip install -r requirements.txt
+```
 
 ```bash
 # Clone the repo
-git clone https://github.com/WillBrennan/VideoStitcher && cd VideoStitcher
+git clone https://github.com/WillBrennan/ImageStitching && cd ImageStitching
 
 # install deps
 make install
 
-# Run the algorithm!
-python video_stitching.py <path to video file> --display --save
-python image_stitching.py <path to image directory> --display --save
+# Run the stitching!
+python stitching.py <path to image directory or video files> --display --save
 ```
 
 ## Demonstration
