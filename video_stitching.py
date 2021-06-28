@@ -12,7 +12,7 @@ import image_stitching
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('video_path', type=str, help="paths to one or more images or image directories")
+    parser.add_argument('video_path', type=str, help="paths to video")
     parser.add_argument('-b', '--debug', dest='debug', action='store_true', help='enable debug logging')
     parser.add_argument('-q', '--quiet', dest='quiet', action='store_true', help='disable all logging')
     parser.add_argument('-d', '--display', dest='display', action='store_true', help="display result")
