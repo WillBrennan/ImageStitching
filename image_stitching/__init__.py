@@ -1,8 +1,8 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+from .stitcher import ImageStitcher
+from .helpers import display
+from .helpers import load_frames
 
-from combine import *
-from matching import *
-import helpers
-
-__all__ = ['combine_images', 'helpers', 'compute_matches']
+__doc__ = '''
+    image_stitching is based around the ImageStitcher class which handles all 
+    feature extraction and image warping
+'''

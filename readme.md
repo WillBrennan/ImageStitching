@@ -2,7 +2,7 @@
 This algorithm runs through a video file, or a set of images, and stitches them together to form a single image. It can be
 used for scanning in large documents where the resolution from a single photo may not be sufficient. Currently this doesnt
 take into account image blurring, evaluating whether an incoming frame has a better quality than the previous one, or
-lens undistortion.
+lens distortion.
 
 ## Quick Start
 Getting the app running is pretty simple; install the requirements, 
