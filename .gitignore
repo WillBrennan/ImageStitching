@@ -64,3 +64,5 @@ target/
 *.png
 *.jpeg
 *.jpg
+examples/*
+**/.DS_Store
