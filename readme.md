@@ -5,18 +5,14 @@ take into account image blurring, evaluating whether an incoming frame has a bet
 lens distortion.
 
 ## Quick Start
-Getting the app running is pretty simple; install the requirements, 
-
-```bash
-pip install -r requirements.txt
-```
+Getting the app running is pretty simple; clone, install the requirements, and run!
 
 ```bash
 # Clone the repo
 git clone https://github.com/WillBrennan/ImageStitching && cd ImageStitching
 
 # install deps
-make install
+pip install -r requirements.txt
 
 # Run the stitching!
 python stitching.py <path to image directory or video files> --display --save
