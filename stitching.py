@@ -21,7 +21,7 @@ def parse_args():
 
     parser.add_argument('--display', action='store_true', help="display result")
     parser.add_argument('--save', action='store_true', help="save result to file")
-    parser.add_argument("--save_path", default="stitched.png", type=str, help="path to save result")
+    parser.add_argument("--save-path", default="stitched.png", type=str, help="path to save result")
 
     return parser.parse_args()
 
